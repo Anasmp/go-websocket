@@ -1,0 +1,42 @@
+<html>
+   <head>
+   </head>
+   <body>
+      <h1>Message</h1>
+     <!-- 1 -->
+      <!-- <div id="long"></div>
+      <div id="lat"></div> -->
+      <div id="message"></div>
+      <!-- <div id="message2"></div> -->
+      <ol>
+     
+      </ol>
+      <script
+  src="https://code.jquery.com/jquery-3.4.0.min.js"
+  integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+  crossorigin="anonymous"></script>
+      <script type="text/javascript">
+        //  var long = document.getElementById("long");
+        //  var lat = document.getElementById("lat");
+         var message = document.getElementById("message");
+        //  var message2 = document.getElementById("message2");
+        // 2
+         var exampleSocket = new WebSocket("ws://localhost:8844/ws")
+         
+         // 3
+         var update = function(){
+           exampleSocket.onmessage = function (event) {
+             var longlatArr = event.data.split(" ");
+             console.log(longlatArr)
+            //  long.textContent = longlatArr[1].toString();
+            //  lat.textContent = longlatArr[0].toString();
+            //  message.textContent = longlatArr[0];
+            // message2.textContent = longlatArr[1];
+            $("ol").append("<li>"+longlatArr[0]+"</li>");
+           }
+         };
+         window.setTimeout(update);
+      </script>
+
+   </body>
+</html>
